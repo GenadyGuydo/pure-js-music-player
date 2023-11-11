@@ -1,0 +1,345 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #49009cda;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.music-player {
+  position: relative;
+  width: 350px;
+  height: 590px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 40px 100px rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  overflow: hidden;
+  color: #331e4bfd;
+}
+.music-name,
+.artist-name {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.music-name {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.artist-name {
+  font-size: 15px;
+}
+
+.album {
+  position: relative;
+  display: block;
+  margin: 15px auto;
+  width: 250px;
+  height: 250px;
+  border-radius: 20px;
+  background-image: url("images/cover\ Ponofilmy.png");
+  background-size: contain;
+  box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.04);
+  animation: pulse 2s linear infinite;
+}
+
+.song-slider {
+  width: 100%;
+  position: relative;
+}
+
+.seek-bar {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #902effda;
+  cursor: pointer;
+}
+.seek-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 15px;
+  background: #331e4bfd;
+  box-shadow: -400px 0 0 400px #450194da;
+}
+.current-time,
+.song-duracion {
+  font-size: 14px;
+}
+
+.song-duracion {
+  position: absolute;
+  right: 0;
+}
+.controls {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.play-btn {
+  position: relative;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+  background: #9334ffe8;
+  cursor: pointer;
+  border: none;
+}
+
+.play-btn span {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 30px;
+  border-radius: 2px;
+  background: #380770fb;
+  transition: 0.5s;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+.play-btn span:nth-child(2) {
+  left: 55%;
+  transform-origin: center;
+}
+
+.play-btn.pause span:nth-child(2) {
+  transform: translateY(-50%) scaleY(0);
+}
+
+.play-btn.pause span:nth-child(1) {
+  transform: translateY(50%) scaleY(0);
+  width: 35%;
+  left: 53%;
+  transform: translate(-50%, -50%);
+  border-radius: 0;
+  clip-path: polygon(0 0, 100% 50%, 100% 50%, 0% 100%);
+}
+
+.play-btn.pause {
+  animation: pulse 2s linear infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0;
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.4);
+  }
+}
+
+.btn {
+  width: 40px;
+  height: 40px;
+  background: #9334ffe8;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+}
+.play-list-wrapper {
+  display: none;
+}
+.play-list-wrapper.active {
+  display: inline;
+  position: absolute;
+  top: 0;
+  left: 0%;
+  height: 100%;
+  width: 100%;
+  background-color: #21162eda;
+  z-index: 100;
+}
+.play-list_header {
+  position: relative;
+  bottom: 7px;
+  color: aliceblue;
+  font-size: 20px;
+  text-align: center;
+  width: 50%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.play-list_container{
+  width: 100%;
+  height: 100%;
+  
+}
+.list__item-wrapper{
+  width: 100%;
+  height: 40px;
+  background-color: #a454fffd;
+}
+
+.playlist__song-name{
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #a454fffd;
+  border: 0.5px solid rgb(0, 0, 0);
+}
+
+
+.gg-play-list {
+  box-sizing: border-box;
+
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs, 1));
+  width: 12px;
+  height: 6px;
+  border-top: 0 solid transparent;
+  border-bottom: 2px solid transparent;
+  box-shadow: inset 0 -2px 0, -2px 4px 0 -2px, 0 -2px 0 0;
+}
+.gg-play-list::after {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 5px solid;
+  top: 6px;
+  right: -3px;
+}
+
+.close-pos {
+  position: absolute;
+
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gg-close-o {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  color: aliceblue;
+  transform: scale(var(--ggs, 1));
+  width: 22px;
+  height: 22px;
+  border: 2px solid;
+  border-radius: 40px;
+}
+.gg-close-o::after,
+.gg-close-o::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute;
+  width: 12px;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(45deg);
+  border-radius: 5px;
+  top: 8px;
+  left: 3px;
+}
+.gg-close-o::after {
+  transform: rotate(-45deg);
+}
+
+.gg-volume {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  transform: scale(var(--ggs,1));
+  width: 8px;
+  height: 8px;
+  border: 2px solid;
+  border-right: 0;
+  -webkit-perspective: 12px;
+  perspective: 12px;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px
+}
+.gg-volume::after,
+.gg-volume::before {
+  content: "";
+  display: block;
+  box-sizing: border-box;
+  position: absolute
+}
+.gg-volume::before {
+  left: 2px;
+  transform: rotateY(-90deg);
+  width: 10px;
+  height: 10px;
+  border: 2px solid;
+  border-left: 0;
+  top: -3px
+}
+.gg-volume::after {
+  width: 8px;
+  height: 16px;
+  border: 6px double;
+  border-left: 0;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  right: -14px;
+  top: -6px
+}
+
+
+.volune__wrapper {
+  width: 40%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #902effda;
+  cursor: pointer;
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 15px;
+  background: #331e4bfd;
+  box-shadow: -400px 0 0 400px #450194da;
+}
+.volume{
+  width: 100%;
+  height: 50px;
+  
+}
